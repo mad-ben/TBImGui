@@ -11,6 +11,9 @@ THIRD_PARTY_INCLUDES_START
 #include <imgui_draw.cpp>
 #include <imgui_tables.cpp>
 #include <imgui_widgets.cpp>
+#if WITH_NETIMGUI
+#define NETIMGUI_IMPLEMENTATION
+#endif
 #if WITH_IMPLOT
 #include <implot.cpp>
 #include <implot_demo.cpp>

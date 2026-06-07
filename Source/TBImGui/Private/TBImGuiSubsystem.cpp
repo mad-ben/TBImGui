@@ -6,7 +6,6 @@ THIRD_PARTY_INCLUDES_START
 #include <imgui.h>
 #include <imgui_internal.h>
 #if WITH_NETIMGUI
-#define NETIMGUI_IMPLEMENTATION
 #include <NetImgui_Api.h>
 #endif
 THIRD_PARTY_INCLUDES_END
