@@ -4,6 +4,7 @@
 
 # LLMs
 .claude/
+.codex/
 .codegraph/
 
 # Compiled Object files
