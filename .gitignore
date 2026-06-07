@@ -2,6 +2,10 @@
 .vs/
 .idea/
 
+# LLMs
+.claude/
+.codegraph/
+
 # Compiled Object files
 *.slo
 *.lo
