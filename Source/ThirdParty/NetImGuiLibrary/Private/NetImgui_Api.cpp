@@ -345,6 +345,16 @@ ImGuiContext* GetContext()
 	Client::ClientInfo& client = *gpClientInfo;
 	return client.mpContext;
 }
+	
+//=================================================================================================
+const char* GetActiveClientName()
+//=================================================================================================
+{
+	if (!gpClientInfo) return nullptr;
+	
+	Client::ClientInfo& client = *gpClientInfo;
+	return client.mName;
+}
 
 //=================================================================================================
 void SendDataTexture(ImTextureID textureId, void* pData, uint16_t width, uint16_t height, eTexFormat format, uint32_t dataSize)

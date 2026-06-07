@@ -4,6 +4,7 @@
 
 THIRD_PARTY_INCLUDES_START
 #include <imgui.h>
+#include <imgui_internal.h>
 #if WITH_NETIMGUI
 #define NETIMGUI_IMPLEMENTATION
 #include <NetImgui_Api.h>
@@ -393,21 +394,19 @@ void UTBImGuiSubsystem::NetImGuiDisconnect()
 
 bool UTBImGuiSubsystem::HasActiveHost() const
 {
-	if (Client::ClientInfo* const ClientInfo = NetImgui::gpClientInfo)
-	{
-		return ClientInfo->IsActive();
-	}
-	
-	return false;
+	return NetImgui::IsConnected() || NetImgui::IsConnectionPending();
 }
 
 bool UTBImGuiSubsystem::IsHostActive() const
 {
-	if (Client::ClientInfo* const ClientInfo = NetImgui::gpClientInfo)
+	if (HasActiveHost())
 	{
-		if (FCStringAnsi::Strcmp(TCHAR_TO_ANSI(*HostName), ClientInfo->mName) == 0)
+		if (const char* ActiveClientName = NetImgui::GetActiveClientName())
 		{
-			return ClientInfo->IsActive();
+			if (FCStringAnsi::Strcmp(TCHAR_TO_ANSI(*HostName), ActiveClientName) == 0)
+			{
+				return true;
+			}
 		}
 	}
 	
@@ -416,11 +415,14 @@ bool UTBImGuiSubsystem::IsHostActive() const
 
 bool UTBImGuiSubsystem::IsHostConnected() const
 {
-	if (Client::ClientInfo* const ClientInfo = NetImgui::gpClientInfo)
+	if (HasActiveHost())
 	{
-		if (FCStringAnsi::Strcmp(TCHAR_TO_ANSI(*HostName), ClientInfo->mName) == 0)
+		if (const char* ActiveClientName = NetImgui::GetActiveClientName())
 		{
-			return ClientInfo->IsConnected();
+			if (FCStringAnsi::Strcmp(TCHAR_TO_ANSI(*HostName), ActiveClientName) == 0)
+			{
+				return NetImgui::IsConnected();
+			}
 		}
 	}
 	

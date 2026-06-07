@@ -252,7 +252,12 @@ NETIMGUI_API	void				EndFrame(void);
 // Return the context associated to this remote connection. Null when not connected.
 //=================================================================================================
 NETIMGUI_API	ImGuiContext*		GetContext();
-
+	
+//=================================================================================================
+// (lewis.scrivens) Exposing additional functions here to get more conext on active client connection.
+//=================================================================================================
+NETIMGUI_API	const char*			GetActiveClientName();
+	
 //=================================================================================================
 // Set the remote client background color and texture
 // Note: If no TextureID is specified, will use the default server texture
