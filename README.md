@@ -49,6 +49,7 @@ A production ready Dear ImGui integration for Unreal Engine, supporting the Edit
 <img width="3834" height="2111" alt="Preview-compressed" src="https://github.com/user-attachments/assets/02859377-9cdb-4557-9c6c-40443f44c61c" />
 
 <br>
+
 ## ✨ Features
 
 **TBImGui** is an integration of [Dear ImGui](https://github.com/ocornut/imgui)
@@ -67,6 +68,7 @@ and even on **headless dedicated servers** with the use of [NetImgui](https://gi
 - **QOL Improvements** — Additional widgets, layout/table utilities, scope macros, and conversions under the `ImGui` namespace.
 
 <br>
+
 ## 💻 Supported Platforms
 
 TBImGui should work on any platform but remains untested in many for now. The plugin as it stands is tested & working on the following platforms:
@@ -81,6 +83,7 @@ ImGui gamepad controls as it stands are here:
 ![image](https://user-images.githubusercontent.com/8225057/36843388-1491dfd8-1d4f-11e8-99ff-21466e680117.png)
 
 <br>
+
 ## ⬇️ Installation
 
 1. Download the [latest release](https://github.com/Lewisscrivens/TBImGui/releases/latest) for your engine version.
@@ -94,11 +97,13 @@ ImGui gamepad controls as it stands are here:
 <img width="2526" height="551" alt="TBImGuiPluginsWindow" src="https://github.com/user-attachments/assets/1b3509cc-25fe-450f-bfc2-92a698fedb2a" />
 
 <br>
+
 ## 📦 Example Project
 
 Before getting started with TBImGui in your own project I would highly recommend checking out the [Example Project](https://github.com/Lewisscrivens/TBImGuiExamples)!
 
 <br>
+
 ## 🚀 Getting Started
 
 1. Follow the installation section to get the plugin enabled in your project.
@@ -170,6 +175,7 @@ public:
 ```
 
 <br>
+
 ## 🧩 Core Concepts
 
 ### Context Scope
@@ -265,6 +271,7 @@ Similar to the ImGui::ShowDemoWindow, ImPlot::ShowDemoWindow etc. I have created
 <img width="1365" height="750" alt="DemoWindow" src="https://github.com/user-attachments/assets/4268f697-ee46-4c0b-90bf-a6f1edcd482a" />
 
 <br>
+
 ## 📈 ImPlot
 
 The ImPlot library is included and enabled by default in this plugin. 
@@ -284,6 +291,7 @@ Learn more about it [here](https://github.com/epezent/implot).
 </div>
 
 <br>
+
 ## 📈 ImPlot3D
 
 The ImPlot3D library is included and enabled by default in this plugin.
@@ -303,6 +311,7 @@ Learn more about it [here](https://github.com/brenocq/implot3d).
 </div>
 
 <br>
+
 ## 🌐 NetImgui
 
 NetImgui is supported for remote debugging of runtime contexts. 
@@ -320,6 +329,7 @@ This was done using the `-ExecCmds="TB.ImGui.NetImGui.Listen"` command line argu
 You can see that the content is rendering correctly which is clear since the server view is only updating it's frame data and is running at a lower framerate.
 
 <br>
+
 ## 📟 Commands
 
 | Command                        | Description                                                                                                                 |
@@ -331,6 +341,7 @@ You can see that the content is rendering correctly which is clear since the ser
 | `TB.ImGui.UnpauseRendering`    | Unpause rendering for the ImGui context in the game viewport.                                                               |
 
 <br>
+
 ## ⚙️ Advanced Configuration
 
 ### ImGui Toolbox Settings
@@ -428,6 +439,7 @@ In the `TBImGui.Build.cs` file you can set the following build settings to compi
 ```
 
 <br>
+
 ## ❓ Why
 
 I came across a post by [Ocornut](https://github.com/ocornut) discussing converging towards a single
@@ -438,6 +450,7 @@ had unlisted issues that I was running into regularly when developing my TBDebug
 So I thought I would have a crack at creating my own binding.
 
 <br>
+
 ## ⭐ Credits / Acknowledgements
 
 I also want to shoutout other developers and resources that have helped and made this plugin possible.
@@ -453,6 +466,7 @@ I also want to shoutout other developers and resources that have helped and made
 | [arnaud-jamin](https://github.com/arnaud-jamin) | [Cog](https://github.com/arnaud-jamin/Cog)                                                                        |
 
 <br>
+
 ## 📚 Additional Resources
 
 Dear ImGui — https://www.dearimgui.com/
