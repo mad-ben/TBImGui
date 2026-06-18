@@ -48,7 +48,7 @@ A production ready Dear ImGui integration for Unreal Engine, supporting the Edit
 
 <img width="3834" height="2111" alt="Preview-compressed" src="https://github.com/user-attachments/assets/02859377-9cdb-4557-9c6c-40443f44c61c" />
 
-<br>
+<p>&nbsp;</p>
 
 ## ✨ Features
 
@@ -67,7 +67,7 @@ and even on **headless dedicated servers** with the use of [NetImgui](https://gi
 - **Gamepad Support** — ImGui use & navigation is fully functional with a gamepad.
 - **QOL Improvements** — Additional widgets, layout/table utilities, scope macros, and conversions under the `ImGui` namespace.
 
-<br>
+<p>&nbsp;</p>
 
 ## 💻 Supported Platforms
 
@@ -82,7 +82,7 @@ ImGui gamepad controls as it stands are here:
 
 ![image](https://user-images.githubusercontent.com/8225057/36843388-1491dfd8-1d4f-11e8-99ff-21466e680117.png)
 
-<br>
+<p>&nbsp;</p>
 
 ## ⬇️ Installation
 
@@ -96,13 +96,13 @@ ImGui gamepad controls as it stands are here:
 
 <img width="2526" height="551" alt="TBImGuiPluginsWindow" src="https://github.com/user-attachments/assets/1b3509cc-25fe-450f-bfc2-92a698fedb2a" />
 
-<br>
+<p>&nbsp;</p>
 
 ## 📦 Example Project
 
 Before getting started with TBImGui in your own project I would highly recommend checking out the [Example Project](https://github.com/Lewisscrivens/TBImGuiExamples)!
 
-<br>
+<p>&nbsp;</p>
 
 ## 🚀 Getting Started
 
@@ -174,7 +174,7 @@ public:
 };
 ```
 
-<br>
+<p>&nbsp;</p>
 
 ## 🧩 Core Concepts
 
@@ -270,7 +270,7 @@ Similar to the ImGui::ShowDemoWindow, ImPlot::ShowDemoWindow etc. I have created
 
 <img width="1365" height="750" alt="DemoWindow" src="https://github.com/user-attachments/assets/4268f697-ee46-4c0b-90bf-a6f1edcd482a" />
 
-<br>
+<p>&nbsp;</p>
 
 ## 📈 ImPlot
 
@@ -290,7 +290,7 @@ Learn more about it [here](https://github.com/epezent/implot).
     <img src="https://raw.githubusercontent.com/wiki/epezent/implot/screenshots3/rt.gif" width="270">
 </div>
 
-<br>
+<p>&nbsp;</p>
 
 ## 📈 ImPlot3D
 
@@ -310,7 +310,7 @@ Learn more about it [here](https://github.com/brenocq/implot3d).
   <img src="https://github.com/user-attachments/assets/94cab1c6-0980-45c5-a6a1-8781f536a2ef" width="270"/>
 </div>
 
-<br>
+<p>&nbsp;</p>
 
 ## 🌐 NetImgui
 
@@ -328,7 +328,7 @@ This was done using the `-ExecCmds="TB.ImGui.NetImGui.Listen"` command line argu
 
 You can see that the content is rendering correctly which is clear since the server view is only updating it's frame data and is running at a lower framerate.
 
-<br>
+<p>&nbsp;</p>
 
 ## 📟 Commands
 
@@ -340,7 +340,7 @@ You can see that the content is rendering correctly which is clear since the ser
 | `TB.ImGui.PauseRendering`      | Pause rendering for the ImGui context in the game viewport.                                                                 |
 | `TB.ImGui.UnpauseRendering`    | Unpause rendering for the ImGui context in the game viewport.                                                               |
 
-<br>
+<p>&nbsp;</p>
 
 ## ⚙️ Advanced Configuration
 
@@ -438,7 +438,7 @@ In the `TBImGui.Build.cs` file you can set the following build settings to compi
 	protected virtual bool WithNetImGui => true;
 ```
 
-<br>
+<p>&nbsp;</p>
 
 ## ❓ Why
 
@@ -449,7 +449,7 @@ After reading this I wasn't satisfied with existing plugins which didn't check a
 had unlisted issues that I was running into regularly when developing my TBDebug plugin.
 So I thought I would have a crack at creating my own binding.
 
-<br>
+<p>&nbsp;</p>
 
 ## ⭐ Credits / Acknowledgements
 
@@ -465,7 +465,7 @@ I also want to shoutout other developers and resources that have helped and made
 | [amuTBKT](https://github.com/amuTBKT)           | [ImGuiPlugin](https://github.com/amuTBKT/ImGuiPlugin)                                                             |
 | [arnaud-jamin](https://github.com/arnaud-jamin) | [Cog](https://github.com/arnaud-jamin/Cog)                                                                        |
 
-<br>
+<p>&nbsp;</p>
 
 ## 📚 Additional Resources
 
