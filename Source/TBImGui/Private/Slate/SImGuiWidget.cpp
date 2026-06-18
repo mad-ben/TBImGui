@@ -57,7 +57,7 @@ void SImGuiWidget::Construct(const FArguments& InArgs)
 	
 	if (InArgs._OnTick.IsBound())
 	{
-		OnTick = InArgs._OnTick;
+		OnTickEvent = InArgs._OnTick;
 		SetCanTick(true);
 	}
 }
@@ -84,7 +84,7 @@ void SImGuiWidget::Tick(const FGeometry& AllottedGeometry, const double InCurren
 {
 	SLeafWidget::Tick(AllottedGeometry, InCurrentTime, InDeltaTime);
 	FTBImGuiContextScope ContextScope(OwningContext);
-	OnTick.ExecuteIfBound();
+	OnTickEvent.ExecuteIfBound();
 }
 
 int32 SImGuiWidget::OnPaint(const FPaintArgs& Args, const FGeometry& AllottedGeometry, const FSlateRect& MyCullingRect, FSlateWindowElementList& OutDrawElements, int32 LayerId, const FWidgetStyle& InWidgetStyle, bool bParentEnabled) const

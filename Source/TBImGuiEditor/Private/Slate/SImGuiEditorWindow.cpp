@@ -41,7 +41,7 @@ void SImGuiEditorWindow::Tick(const FGeometry& AllottedGeometry, const double In
 	}
 }
 
-TSharedRef<FTBImGuiContext> SImGuiEditorWindow::GetWindowContext()
+TSharedRef<FTBImGuiContext> SImGuiEditorWindow::GetWindowContext() const
 {
 	return WindowContext.ToSharedRef();
 }

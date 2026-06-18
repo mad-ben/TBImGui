@@ -101,7 +101,7 @@ protected:
 	bool bInputEnabled = false;
 	bool bIsOwnedByApp = false;
 	
-	FSimpleDelegate OnTick;
+	FSimpleDelegate OnTickEvent;
 	
 	TSharedPtr<FTBImGuiContext> OwningContext = nullptr;
 	

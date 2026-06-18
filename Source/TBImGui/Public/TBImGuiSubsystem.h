@@ -36,17 +36,14 @@ public:
 	/// @brief Returns true if the game instance has a valid ImGui context.
 	bool HasContext() const;
 	
-	/// @brief Bind to event called after the ImGui context and viewport have been created.
-	FDelegateHandle BindImGuiInitialized(const FSimpleMulticastDelegate::FDelegate& InDelegate);
-	void UnbindImGuiInitialized(const FDelegateHandle& InHandle);
+	/// Called after the ImGui context has been created.
+	FSimpleMulticastDelegate& OnImGuiInitialized();
 	
-	/// @brief Bind to event called after the ImGui viewport widget has been created.
-	FDelegateHandle BindImGuiViewportInitialized(const FSimpleMulticastDelegate::FDelegate& InDelegate);
-	void UnbindImGuiViewportInitialized(const FDelegateHandle& InHandle);
+	/// Called after the ImGui viewport widget has been bound to the game viewport.
+	FSimpleMulticastDelegate& OnImGuiViewportInitialized();
 	
-	/// @brief Bind to event called before the ImGui context begins to tear down.
-	FDelegateHandle BindImGuiShutdown(const FSimpleMulticastDelegate::FDelegate& InDelegate);
-	void UnbindImGuiShutdown(const FDelegateHandle& InHandle);
+	/// Called before the ImGui context begins to tear down.
+	FSimpleMulticastDelegate& OnImGuiShutdown();
 	
 #if WITH_NETIMGUI
 	/// @brief Listens for remote connections.

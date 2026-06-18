@@ -67,7 +67,7 @@ struct FTBImGuiContextParams
 	TWeakObjectPtr<UObject> ObjectUserDataWeak = nullptr;
 };
 
-/// @brief ImGui platform context for Unreal engine bindings.
+/// @brief ImGui platform context for Unreal Engine bindings.
 class TBIMGUI_API FTBImGuiContext : public TSharedFromThis<FTBImGuiContext>
 {
 public:
@@ -98,17 +98,14 @@ public:
 	/// @brief Start/Stop ImGui render loop.
 	void SetPauseRendering(bool bPause);
 	
-	/// @brief Bind to event called when a new ImGui frame begins for this instance.
-	FDelegateHandle BindNewFrame(const FSimpleMulticastDelegate::FDelegate& InDelegate);
-	void UnbindNewFrame(const FDelegateHandle& InHandle);
+	/// @brief Event called when a new ImGui frame begins for this instance.
+	FSimpleMulticastDelegate& OnNewFrame();
 	
-	/// @brief Bind to event called right before ImGui is rendered for this instance.
-	FDelegateHandle BindPreRender(const FSimpleMulticastDelegate::FDelegate& InDelegate);
-	void UnbindPreRender(const FDelegateHandle& InHandle);
+	/// @brief Event called right before ImGui is rendered for this instance.
+	FSimpleMulticastDelegate& OnPreRender();
 	
-	/// @brief Bind to event called right after ImGui is rendered for this instance.
-	FDelegateHandle BindPostRender(const FSimpleMulticastDelegate::FDelegate& InDelegate);
-	void UnbindPostRender(const FDelegateHandle& InHandle);
+	/// @brief Event called right after ImGui is rendered for this instance.
+	FSimpleMulticastDelegate& OnPostRender();
 	
 	/// @brief Return the underlying ImGui context.
 	ImGuiContext* GetImGuiContext() const;
@@ -203,7 +200,7 @@ protected:
 	
 	TArray<char> ClipboardBuffer;
 	
-	FSimpleMulticastDelegate OnNewFrame;
-	FSimpleMulticastDelegate OnPreRender;
-	FSimpleMulticastDelegate OnPostRender;
+	FSimpleMulticastDelegate OnNewFrameEvent;
+	FSimpleMulticastDelegate OnPreRenderEvent;
+	FSimpleMulticastDelegate OnPostRenderEvent;
 };

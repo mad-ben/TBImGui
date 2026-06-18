@@ -28,7 +28,7 @@ public:
 	/// End SWindow Override
 	
 	/// @brief Return the editor windows ImGui context.
-	TSharedRef<FTBImGuiContext> GetWindowContext();
+	TSharedRef<FTBImGuiContext> GetWindowContext() const;
 	
 protected:
 	

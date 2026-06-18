@@ -40,7 +40,7 @@ namespace
 				ImGui::TableNextRowFirstColumn();
 				ImGui::Text("Version");
 				ImGui::TableNextColumn();
-				ImGui::Text(TCHAR_TO_ANSI(*FTBImGuiUtils::GetPluginVersionName()));
+				ImGui::Text("%s", TCHAR_TO_ANSI(*FTBImGuiUtils::GetPluginVersionName()));
 				
 #if IMGUI_RENDER_MODE == IMGUI_RENDER_MODE_SLATE
 				ImGui::TableNextRowFirstColumn();
@@ -78,12 +78,12 @@ namespace
 				ImGui::TableNextRowFirstColumn();
 				ImGui::Text("Context Name");
 				ImGui::TableNextColumn();
-				ImGui::Text(TCHAR_TO_ANSI(*Params.ContextName));
+				ImGui::Text("%s", TCHAR_TO_ANSI(*Params.ContextName));
 				
 				ImGui::TableNextRowFirstColumn();
 				ImGui::Text("Viewport Mode");
 				ImGui::TableNextColumn();
-				ImGui::Text(TCHAR_TO_ANSI(*UEnum::GetValueOrBitfieldAsString(Params.ViewportMode)));
+				ImGui::Text("%s", TCHAR_TO_ANSI(*UEnum::GetValueOrBitfieldAsString(Params.ViewportMode)));
 				
 				ImGui::TableNextRowFirstColumn();
 				ImGui::Text("Docking Support");
@@ -108,12 +108,12 @@ namespace
 				ImGui::TableNextRowFirstColumn();
 				ImGui::Text("Object User Data");
 				ImGui::TableNextColumn();
-				ImGui::Text(TCHAR_TO_ANSI(*GetNameSafe(Params.ObjectUserDataWeak.Get())));
+				ImGui::Text("%s", TCHAR_TO_ANSI(*GetNameSafe(Params.ObjectUserDataWeak.Get())));
 				
 				ImGui::TableNextRowFirstColumn();
 				ImGui::Text("Input Mode");
 				ImGui::TableNextColumn();
-				ImGui::Text(TCHAR_TO_ANSI(*UEnum::GetValueOrBitfieldAsString(ActiveContext->GetInputMode())));
+				ImGui::Text("%s", TCHAR_TO_ANSI(*UEnum::GetValueOrBitfieldAsString(ActiveContext->GetInputMode())));
 				
 				ImGui::EndTable();
 			}
@@ -600,8 +600,16 @@ namespace
 				
 				ImGui::TableNextRowFirstColumn();
 				ImGui::TextAligned("ImGui::InputTextFilter_UnrealFileSystemTypes()  ");
-				ImGui::HoveredTooltip("Filters out invalid file system characters for InputText widget types. \n"
-					"Try entering any of the following characters: /?:&\\*\"<>|%#@^");
+				if (ImGui::IsItemHovered(ImGuiHoveredFlags_ForTooltip | ImGuiHoveredFlags_DelayNormal))
+				{
+					if (ImGui::BeginTooltipEx(ImGuiTooltipFlags_OverridePrevious, ImGuiWindowFlags_NoFocusOnAppearing))
+					{
+						ImGui::TextUnformatted("Filters out invalid file system characters for InputText widget types.");
+						ImGui::TextUnformatted("Try entering any of the following characters: /?:&\\*\"<>|%#@^");
+						ImGui::EndTooltip();
+					}
+				}
+				
 				ImGui::TableNextColumn();
 				ImGui::AlignTextToFramePadding();
 				ImGui::SetNextItemSpan();
@@ -811,17 +819,17 @@ namespace
 	}
 }
 
-void FTBImGuiDemo::ShowDemoWindow(bool* bIsOpen)
+void FTBImGuiDemo::ShowWindow(bool* bIsOpen)
 {
 	if (ImGui::Begin("ImGui Toolbox Demo", bIsOpen))
 	{
-		ShowDemoContent();
+		ShowContent();
 	}
 	
 	ImGui::End();
 }
 
-void FTBImGuiDemo::ShowDemoContent()
+void FTBImGuiDemo::ShowContent()
 {
 	if (ImGui::CollapsingHeader(ICON_FA_INFO "     Info", ImGuiTreeNodeFlags_DefaultOpen))
 	{

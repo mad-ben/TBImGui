@@ -21,7 +21,7 @@
 		},
 		{
 			"Name": "TBImGuiEditor",
-			"Type": "Editor",
+			"Type": "EditorNoCommandlet",
 			"LoadingPhase": "PostEngineInit"
 		},
 		{

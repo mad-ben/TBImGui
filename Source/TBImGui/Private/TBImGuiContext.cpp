@@ -656,7 +656,7 @@ void FTBImGuiContext::BeginFrame()
 	}
 	
 	ImGui::NewFrame();
-	OnNewFrame.Broadcast();
+	OnNewFrameEvent.Broadcast();
 }
 
 void FTBImGuiContext::EndFrame()
@@ -670,7 +670,7 @@ void FTBImGuiContext::EndFrame()
 	
 	FTBImGuiContextScope ContextScope(AsShared());
 	
-	OnPreRender.Broadcast();
+	OnPreRenderEvent.Broadcast();
 	
 	ImGui::Render();
 	
@@ -691,7 +691,7 @@ void FTBImGuiContext::EndFrame()
 		}
 	}
 	
-	OnPostRender.Broadcast();
+	OnPostRenderEvent.Broadcast();
 }
 
 void FTBImGuiContext::SetPauseRendering(bool bPause)
@@ -699,34 +699,19 @@ void FTBImGuiContext::SetPauseRendering(bool bPause)
 	bRenderingPaused = bPause;
 }
 
-FDelegateHandle FTBImGuiContext::BindNewFrame(const FSimpleMulticastDelegate::FDelegate& InDelegate)
+FSimpleMulticastDelegate& FTBImGuiContext::OnNewFrame()
 {
-	return OnNewFrame.Add(InDelegate);
+	return OnNewFrameEvent;
 }
 
-void FTBImGuiContext::UnbindNewFrame(const FDelegateHandle& InHandle)
+FSimpleMulticastDelegate& FTBImGuiContext::OnPreRender()
 {
-	OnNewFrame.Remove(InHandle);
+	return OnPreRenderEvent;
 }
 
-FDelegateHandle FTBImGuiContext::BindPreRender(const FSimpleMulticastDelegate::FDelegate& InDelegate)
+FSimpleMulticastDelegate& FTBImGuiContext::OnPostRender()
 {
-	return OnPreRender.Add(InDelegate);
-}
-
-void FTBImGuiContext::UnbindPreRender(const FDelegateHandle& InHandle)
-{
-	OnPreRender.Remove(InHandle);
-}
-
-FDelegateHandle FTBImGuiContext::BindPostRender(const FSimpleMulticastDelegate::FDelegate& InDelegate)
-{
-	return OnPostRender.Add(InDelegate);
-}
-
-void FTBImGuiContext::UnbindPostRender(const FDelegateHandle& InHandle)
-{
-	OnPostRender.Remove(InHandle);
+	return OnPostRenderEvent;
 }
 
 ImGuiContext* FTBImGuiContext::GetImGuiContext() const

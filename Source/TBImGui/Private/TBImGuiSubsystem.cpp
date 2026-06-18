@@ -198,7 +198,7 @@ void UTBImGuiSubsystem::Initialize(FSubsystemCollectionBase& InCollection)
 	FTBImGuiContextParams ContextParams;
 	ContextParams.ContextName = ContextName;
 	ContextParams.bHeadless = bIsDedicatedServer;
-	ContextParams.ViewportMode = bIsDedicatedServer ? ETBImGuiViewportMode::Single : ETBImGuiViewportMode::Multiple;
+	ContextParams.ViewportMode = bIsDedicatedServer ? ETBImGuiViewportMode::Single : ETBImGuiViewportMode::Multiple; // Worth a fullscreen check here?
 	ContextParams.ObjectUserDataWeak = GameInstance;
 	ImGuiContext = FTBImGuiContext::CreateContext(ContextParams);
 	check(ImGuiContext.IsValid());
@@ -210,13 +210,13 @@ void UTBImGuiSubsystem::Initialize(FSubsystemCollectionBase& InCollection)
 		ImGuiContext->InitializeFrameBinding(FrameBindingType.LoadSynchronous());
 	}
 	
-	// Optionally show the demo window by default.
+	// Optionally, show the demo window by default.
 	if (ImGuiSettings->bShowDemoWindow)
 	{
-		ImGuiContext->BindPreRender(FSimpleMulticastDelegate::FDelegate::CreateLambda([]
+		ImGuiContext->OnPreRender().AddLambda([]
 		{
 			ImGui::ShowDemoWindow();
-		}));
+		});
 	}
 	
 	OnImGuiInitializedEvent.Broadcast();
@@ -274,34 +274,19 @@ bool UTBImGuiSubsystem::HasContext() const
 	return ImGuiContext.IsValid();
 }
 
-FDelegateHandle UTBImGuiSubsystem::BindImGuiInitialized(const FSimpleMulticastDelegate::FDelegate& InDelegate)
+FSimpleMulticastDelegate& UTBImGuiSubsystem::OnImGuiInitialized()
 {
-	return OnImGuiInitializedEvent.Add(InDelegate);
+	return OnImGuiInitializedEvent;
 }
 
-void UTBImGuiSubsystem::UnbindImGuiInitialized(const FDelegateHandle& InHandle)
+FSimpleMulticastDelegate& UTBImGuiSubsystem::OnImGuiViewportInitialized()
 {
-	OnImGuiInitializedEvent.Remove(InHandle);
+	return OnImGuiViewportInitializedEvent;
 }
 
-FDelegateHandle UTBImGuiSubsystem::BindImGuiViewportInitialized(const FSimpleMulticastDelegate::FDelegate& InDelegate)
+FSimpleMulticastDelegate& UTBImGuiSubsystem::OnImGuiShutdown()
 {
-	return OnImGuiViewportInitializedEvent.Add(InDelegate);
-}
-
-void UTBImGuiSubsystem::UnbindImGuiViewportInitialized(const FDelegateHandle& InHandle)
-{
-	OnImGuiViewportInitializedEvent.Remove(InHandle);
-}
-
-FDelegateHandle UTBImGuiSubsystem::BindImGuiShutdown(const FSimpleMulticastDelegate::FDelegate& InDelegate)
-{
-	return OnImGuiShutdownEvent.Add(InDelegate);
-}
-
-void UTBImGuiSubsystem::UnbindImGuiShutdown(const FDelegateHandle& InHandle)
-{
-	OnImGuiShutdownEvent.Remove(InHandle);
+	return OnImGuiShutdownEvent;
 }
 
 void UTBImGuiSubsystem::InitializeImGuiViewport()

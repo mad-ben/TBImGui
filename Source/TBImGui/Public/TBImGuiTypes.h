@@ -30,7 +30,7 @@ enum class ETBImGuiInputMode : uint8
 	None				// Input is disabled for all viewports.
 };
 
-/// @brief Viewport data binding for tracking UnrealEngine windows/widgets 
+/// @brief Viewport data binding for tracking Unreal Engine windows/widgets 
 /// created for their ImGui counterpart viewports.
 struct TBIMGUI_API FTBImGuiViewportData
 {
@@ -81,8 +81,6 @@ private:
 template <typename ElementType>
 struct TTBImGuiRingBuffer
 {
-public:
-	
 	TTBImGuiRingBuffer(int32 MaxItems)
 		: WriteOffset(0)
 	{

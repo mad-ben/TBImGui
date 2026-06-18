@@ -36,5 +36,5 @@ void SImGuiContextWidget::Tick(const FGeometry& AllottedGeometry, const double I
 
 void SImGuiContextWidget::DrawImGuiContent()
 {
-	OnTick.ExecuteIfBound();
+	OnTickEvent.ExecuteIfBound();
 }

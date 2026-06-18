@@ -38,13 +38,13 @@ void FTBImGuiEditorModule::StartupModule()
 	// Bind to the application scope for rendering ImGui in the editor.
 	EditorContext->InitializeFrameBinding(FTBImGuiFrameBinding_Slate::StaticStruct());
 	
-	// Optionally show the demo window by default.
+	// Optionally, show the demo window by default.
 	if (ImGuiEditorSettings->bShowDemoWindow)
 	{
-		EditorContext->BindPreRender(FSimpleMulticastDelegate::FDelegate::CreateLambda([]
+		EditorContext->OnPreRender().AddLambda([]
 		{
 			ImGui::ShowDemoWindow();
-		}));
+		});
 	}
 	
 	OnContextCreated.Broadcast(EditorContext.ToSharedRef());

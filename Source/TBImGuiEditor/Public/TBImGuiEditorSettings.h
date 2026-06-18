@@ -25,7 +25,7 @@ public:
 	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category = "General")
 	bool bCreateEditorContext = false;
 	
-	/// Should ImGui render a demo window at runtime? 
+	/// Should ImGui render a demo window when the editor opens?
 	/// This is intended for testing the plugin is working when first adding to the project.
 	UPROPERTY(Config, EditAnywhere, BlueprintReadOnly, Category = "General")
 	bool bShowDemoWindow = false;

@@ -124,7 +124,7 @@ namespace ImGui
 	TBIMGUI_API void TextTooltip(const char* InText, ...) IM_FMTARGS(1);
 	
 	/// @brief Draws the given tooltip under a text icon if the last item was hovered.
-	TBIMGUI_API void TextTooltipEx(ImGuiHoveredFlags Flags, const char* InText, ...) IM_FMTARGS(1);
+	TBIMGUI_API void TextTooltipEx(ImGuiHoveredFlags Flags, const char* InText, ...) IM_FMTARGS(2);
 	
 #pragma endregion
 	
@@ -174,7 +174,7 @@ namespace ImGui
 	TBIMGUI_API void HoveredTooltip(const char* InText, ...) IM_FMTARGS(1);
 
 	/// @brief Draws a tooltip if the last item was hovered.
-	TBIMGUI_API void HoveredTooltipEx(ImGuiHoveredFlags Flags, const char* InText, ...) IM_FMTARGS(1);
+	TBIMGUI_API void HoveredTooltipEx(ImGuiHoveredFlags Flags, const char* InText, ...) IM_FMTARGS(2);
 	
 	/// @brief Filters out invalid file system characters for InputText widget types.
 	TBIMGUI_API int InputTextFilter_UnrealFileSystemTypes(ImGuiInputTextCallbackData* InData);
