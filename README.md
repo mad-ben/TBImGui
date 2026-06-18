@@ -12,6 +12,8 @@
 
 A production ready Dear ImGui integration for Unreal Engine, supporting the Editor, PIE, packaged games, remote debugging via NetImgui, and multi-viewport rendering.
 
+<p>&nbsp;</p>
+
 ## 📄 Table of Contents
 
 - [Preview](#-preview)
@@ -43,6 +45,8 @@ A production ready Dear ImGui integration for Unreal Engine, supporting the Edit
 - [Why](#-why)
 - [Credits / Acknowledgements](#-credits--acknowledgements)
 - [Additional Resources](#-additional-resources)
+
+<p>&nbsp;</p>
 
 ## 🖼️ Preview
 
