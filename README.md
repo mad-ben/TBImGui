@@ -33,7 +33,7 @@ A production ready Dear ImGui integration for Unreal Engine, supporting the Edit
 - [NetImgui](#-netimgui)
    - [Dedicated Server Support](#dedicated-server-support)
 - [Commands](#-commands)
-- [Configuration](#️-configuration)
+- [Advanced Configuration](#️-advanced-configuration)
    - [ImGui Toolbox Settings](#imgui-toolbox-settings)
    - [ImGui Toolbox Editor Settings](#imgui-toolbox-editor-settings)
    - [Rendering](#rendering)
@@ -46,7 +46,7 @@ A production ready Dear ImGui integration for Unreal Engine, supporting the Edit
 
 ## 🖼️ Preview
 
-IMAGE Preview
+<img width="3834" height="2111" alt="Preview-compressed" src="https://github.com/user-attachments/assets/02859377-9cdb-4557-9c6c-40443f44c61c" />
 
 ## ✨ Features
 
@@ -88,7 +88,7 @@ ImGui gamepad controls as it stands are here:
 
 3. Launch your project and ensure the plugin is enabled in the plugin settings.
 
-IMAGE PluginSettingsScreenshot
+<img width="2526" height="551" alt="TBImGuiPluginsWindow" src="https://github.com/user-attachments/assets/1b3509cc-25fe-450f-bfc2-92a698fedb2a" />
 
 ## 📦 Example Project
 
@@ -234,7 +234,7 @@ Texture support is built in and you can use `UTexture*` directly in ImGui calls.
 ImGui::Image(ImTextureRef(GEngine->DefaultTexture), ImVec2(100, 100));
 ```
 
-IMAGE DefaultTexture
+<img width="255" height="256" alt="DefaultTexture" src="https://github.com/user-attachments/assets/a5ca3fe8-b883-48c9-ae01-032e7f4d107f" />
 
 Support is included for sending Unreal textures over NetImgui. Using the following functions.
 
@@ -243,20 +243,20 @@ FTBImGuiUtils::SendTextureToNetImGui(UTexture2D* InTexture);
 FTBImGuiUtils::SendTextureToNetImGui(UTextureRenderTarget2D* InTexture);
 ```
 
-IMAGE TexturesOverServer
+<img width="1749" height="1008" alt="TexturesOverServer" src="https://github.com/user-attachments/assets/12732f18-9126-4b5e-b4c8-196ae6c45a9d" />
 
 ### Fonts
 
 All engine fonts are supported by default and can be used directly in ImGui calls.
 Font awesome 7 free is also included in the plugin by default using juliettef's [icon headers](https://github.com/juliettef/IconFontCppHeaders).
 
-IMAGE FontsExample
+<img width="1550" height="274" alt="FontsExample" src="https://github.com/user-attachments/assets/3a8dd623-9a39-4ed7-af1b-722bbd7c519a" />
 
 ### TBImGuiDemo
 
 Similar to the ImGui::ShowDemoWindow, ImPlot::ShowDemoWindow etc. I have created FTBImGuiDemo::ShowWindow showcasing these core concepts of the TBImGui plugin.
 
-IMAGE TBImGuiDemo
+<img width="1365" height="750" alt="DemoWindow" src="https://github.com/user-attachments/assets/4268f697-ee46-4c0b-90bf-a6f1edcd482a" />
 
 ## 📈 ImPlot
 
@@ -306,7 +306,7 @@ This is extremely useful for debugging platform specific issues and even headles
 The below image shows ImGui content rendering in the NetImgui server application from a headless dedicated server instance.<br>
 This was done using the `-ExecCmds="TB.ImGui.NetImGui.Listen"` command line argument and then connecting from the NetImgui server application.
 
-IMAGE DedicatedServerUI
+<img width="3027" height="1263" alt="DedicatedServerUI" src="https://github.com/user-attachments/assets/7cd4fc56-ad48-4760-bb3a-f38f76d8cd66" />
 
 You can see that the content is rendering correctly which is clear since the server view is only updating it's frame data and is running at a lower framerate.
 
@@ -385,7 +385,7 @@ Missing texture method is macro defined in the TBImGuiConfig.h file.
 #endif
 ```
 
-IMAGE MissingTextures
+<img width="1377" height="380" alt="MissingTextures" src="https://github.com/user-attachments/assets/1a04ad6b-8a87-4768-aaed-82238fa04b10" />
 
 ### Contexts
 
