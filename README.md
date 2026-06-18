@@ -65,7 +65,7 @@ and even on **headless dedicated servers** with the use of [NetImgui](https://gi
 - **Gamepad Support** — ImGui use & navigation is fully functional with a gamepad.
 - **QOL Improvements** — Additional widgets, layout/table utilities, scope macros, and conversions under the `ImGui` namespace.
 
-## ✨ Supported Platforms
+## 💻 Supported Platforms
 
 TBImGui should work on any platform but remains untested in many for now. The plugin as it stands is tested & working on the following platforms:
 
