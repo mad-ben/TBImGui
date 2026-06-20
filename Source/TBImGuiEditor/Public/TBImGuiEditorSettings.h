@@ -7,7 +7,7 @@
 #include "TBImGuiEditorSettings.generated.h"
 
 /// @brief TBImGuiEditor settings to control the flow of ImGui within the editor.
-UCLASS(Config="Editor", DefaultConfig, meta = (DisplayName = "ImGui Editor Toolbox"))
+UCLASS(Config="Editor", DefaultConfig, meta = (DisplayName = "ImGui Toolbox Editor"))
 class TBIMGUIEDITOR_API UTBImGuiEditorSettings : public UDeveloperSettings
 {
 	GENERATED_BODY()
@@ -19,6 +19,13 @@ public:
 	{
 		return GetDefault<UTBImGuiEditorSettings>();
 	}
+	
+	/// Begin UDeveloperSettings Override
+	virtual FName GetCategoryName() const override
+	{
+		return TEXT("Toolbox");
+	}
+	/// End UDeveloperSettings Override
 	
 	/// Should an ImGui context be created for the editor?
 	/// @note Requires editor restart to take effect.

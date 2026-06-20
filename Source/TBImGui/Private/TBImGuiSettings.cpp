@@ -23,6 +23,11 @@ UTBImGuiSettings::UTBImGuiSettings()
 	DefaultFont = GetDefaultFontName();
 }
 
+FName UTBImGuiSettings::GetCategoryName() const
+{
+	return TEXT("Toolbox");
+}
+
 #if WITH_EDITOR
 bool UTBImGuiSettings::CanEditChange(const FProperty* InProperty) const
 {

@@ -3,6 +3,7 @@
 #include "TBImGuiContext.h"
 
 #include <Framework/Application/SlateApplication.h>
+#include <Framework/Application/SlateUser.h>
 #include <HAL/LowLevelMemTracker.h>
 #include <HAL/PlatformApplicationMisc.h>
 #include <HAL/PlatformProcess.h>
@@ -11,7 +12,9 @@
 #include <UObject/Package.h>
 #include <Misc/App.h>
 #include <Widgets/SWindow.h>
+#include <Engine/Engine.h>
 #include <RHITypes.h>
+#include <RenderingThread.h>
 
 THIRD_PARTY_INCLUDES_START
 #include <imgui.h>

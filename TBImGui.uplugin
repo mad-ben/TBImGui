@@ -1,4 +1,4 @@
-﻿{
+{
 	"FileVersion": 3,
 	"Version": 1,
 	"VersionName": "1.0",
@@ -7,7 +7,7 @@
 	"Category": "Toolbox Plugins",
 	"CreatedBy": "Lewis Scrivens",
 	"CreatedByURL": "https://lewisscrivens.com",
-	"DocsURL": "",
+	"DocsURL": "https://github.com/Lewisscrivens/TBImGui",
 	"MarketplaceURL": "",
 	"CanContainContent": false,
 	"IsBetaVersion": false,
@@ -29,5 +29,6 @@
 			"Type": "Runtime",
 			"LoadingPhase": "PostConfigInit"
 		}
-	]
+	],
+	"SupportURL": "https://github.com/Lewisscrivens/TBImGui/issues"
 }

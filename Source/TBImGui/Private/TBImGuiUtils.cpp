@@ -6,8 +6,10 @@
 #include <Engine/GameViewportClient.h>
 #include <Engine/TextureRenderTarget2D.h>
 #include <Engine/Texture2D.h>
+#include <Engine/StaticMesh.h>
 #include <Engine/World.h>
 #include <Widgets/SWidget.h>
+#include <Widgets/SWindow.h>
 #include <CanvasItem.h>
 #include <CanvasTypes.h>
 

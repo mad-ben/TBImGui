@@ -4,7 +4,9 @@
 
 #include <Misc/CoreDelegates.h>
 #include <Framework/Application/SlateApplication.h>
+#include <Engine/GameInstance.h>
 #include <Engine/World.h>
+#include <UObject/Object.h>
 
 #include "TBImGuiSubsystem.h"
 

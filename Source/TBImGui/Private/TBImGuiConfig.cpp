@@ -3,6 +3,7 @@
 #include "TBImGuiConfig.h"
 
 #include <HAL/PlatformFileManager.h>
+#include <GenericPlatform/GenericPlatformFile.h>
 
 // ReSharper disable CppUnusedIncludeDirective
 THIRD_PARTY_INCLUDES_START
@@ -13,6 +14,8 @@ THIRD_PARTY_INCLUDES_START
 #include <imgui_widgets.cpp>
 #if WITH_NETIMGUI
 #define NETIMGUI_IMPLEMENTATION
+#include <NetImgui_Api.h>
+#undef NETIMGUI_IMPLEMENTATION
 #endif
 #if WITH_IMPLOT
 #include <implot.cpp>

@@ -3,6 +3,7 @@
 #pragma once
 
 #include <Engine/DeveloperSettings.h>
+#include <Engine/EngineBaseTypes.h>
 
 #include "TBImGuiSettings.generated.h"
 
@@ -28,13 +29,14 @@ public:
 	
 	UTBImGuiSettings();
 	
-#if WITH_EDITOR
 	/// Begin UDeveloperSettings Override
+	virtual FName GetCategoryName() const override;
+#if WITH_EDITOR
 	virtual bool CanEditChange(const FProperty* InProperty) const override;
 	virtual void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
-	/// End UDeveloperSettings Override
 #endif
-	
+	/// End UDeveloperSettings Override
+
 	/// @brief Returns the singleton settings object.
 	static const UTBImGuiSettings* Get();
 	

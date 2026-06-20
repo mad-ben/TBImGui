@@ -3,6 +3,7 @@
 #pragma once
 
 #include <Delegates/Delegate.h>
+#include <Engine/EngineBaseTypes.h>
 
 #include "TBImGuiFrameBindings.generated.h"
 

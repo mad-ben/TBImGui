@@ -4,6 +4,7 @@
 
 #include <InputCoreTypes.h>
 #include <HAL/PlatformApplicationMisc.h>
+#include <GenericPlatform/ICursor.h>
 
 THIRD_PARTY_INCLUDES_START
 #include <imgui.h>

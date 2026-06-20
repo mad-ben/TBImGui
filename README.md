@@ -106,9 +106,26 @@ ImGui gamepad controls as it stands are here:
 
 Before getting started with TBImGui in your own project I would highly recommend checking out the [Example Project](https://github.com/Lewisscrivens/TBImGuiExamples)!
 
+### Runtime Examples
+
+- `UTBImGuiExamplesSubsystem` — Handles per game instance registry of example content using the `ExampleMenuBar`.
+- `UTBImGuiExamplesMenuBar` — Contains example logic for a simple runtime ImGui menu bar and window management system.
+- **Input** — Example input handling for showing/hiding ImGui content while returning control to the game with full NetImgui support.
+- **Docking** — Example docking space in game-viewport.
+- **ImPlot Examples** — Runtime graph examples using live engine timing data.
+- **ImPlot3D Examples** — 3D plotting example showing player movement history in 3D-space.
+- **NetImgui Handling** — Visibility bindings for active connections through NetImgui.
+
+### Editor Examples
+- **Slate Window** — ImGui context and content rendered within a custom `SWindow`.
+- **Slate Tab** — ImGui context and content rendered within a 'SDockTab'.
+- **Editor Main Frame** — ImGui window rendered in the editor main frame.
+
 <p>&nbsp;</p>
 
 ## 🚀 Getting Started
+
+### Project Setup
 
 1. Follow the installation section to get the plugin enabled in your project.
 
@@ -177,6 +194,35 @@ public:
 	}
 };
 ```
+
+### Project Configuration
+
+#### Runtime Settings
+
+These settings can be found in under _Project Settings > Toolbox > ImGui Toolbox_.
+
+| Setting                  | Description                                                                                                                                                                     |
+|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **CreateContext**        | What runtime game instance contexts should be created automatically? By default a context is created for **Client** , **Standalone**, **ListenServer** and **DedicatedServer**. |
+| **bShowDemoWindow**      | Open a demo window at runtime for any active contexts.                                                                                                                          |
+| **RuntimeFrameBinding**  | ImGui engine frame binding for rendering ImGui content at runtime.                                                                                                              |
+| **HeadlessFrameBinding**  | ImGui engine frame binding for rendering ImGui content for a headless instance (dedicated server).                                                                              |
+| **DefaultFont**          | Default font to use when rendering ImGui content.                                                                                                                               |
+| **AdditionalFontPaths**  | Additional font paths to scan.                                                                                                                                                  |
+| **NetImGuiPort**         | The port used when listening for incoming NetImGui connections on a client.                                                                                                     |
+
+By default the plugin will create a context for any/all game instances, show an ImGui demo window and render post world tick.
+
+### Editor Settings
+
+These settings can be found in under _Project Settings > Toolbox > ImGui Toolbox Editor_.
+
+| Setting                  | Description                                              |
+|--------------------------|----------------------------------------------------------|
+| **bCreateEditorContext** | Should an ImGui context be created for the editor?       |
+| **bShowDemoWindow**      | Should ImGui render a demo window when the editor opens? |
+
+By default the editor context is disabled since only more advanced users will make use of it.
 
 <p>&nbsp;</p>
 
@@ -319,7 +365,8 @@ Learn more about it [here](https://github.com/brenocq/implot3d).
 ## 🌐 NetImgui
 
 NetImgui is supported for remote debugging of runtime contexts. 
-You can use commands to start listening for incoming connections from the NetImgui Server application. 
+You can use commands to start listening for incoming connections from the NetImgui Server application.
+Learn more about it [here](https://github.com/sammyfreg/netImgui).
 
 This is extremely useful for debugging platform specific issues and even headless dedicated servers with visual UI.
 
@@ -347,25 +394,6 @@ You can see that the content is rendering correctly which is clear since the ser
 <p>&nbsp;</p>
 
 ## ⚙️ Advanced Configuration
-
-### ImGui Toolbox Settings
-
-| Setting                  | Description                                                                                                                                                                     |
-|--------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **CreateContext**        | What runtime game instance contexts should be created automatically? By default a context is created for **Client** , **Standalone**, **ListenServer** and **DedicatedServer**. |
-| **bShowDemoWindow**      | Open a demo window at runtime for any active contexts.                                                                                                                          |
-| **RuntimeFrameBinding**  | ImGui engine frame binding for rendering ImGui content at runtime.                                                                                                              |
-| **HeadlessFrameBinding**  | ImGui engine frame binding for rendering ImGui content for a headless instance (dedicated server).                                                                              |
-| **DefaultFont**          | Default font to use when rendering ImGui content.                                                                                                                               |
-| **AdditionalFontPaths**  | Additional font paths to scan.                                                                                                                                                  |
-| **NetImGuiPort**         | The port used when listening for incoming NetImGui connections on a client.                                                                                                     |
-
-### ImGui Toolbox Editor Settings
-
-| Setting                  | Description                                              |
-|--------------------------|----------------------------------------------------------|
-| **bCreateEditorContext** | Should an ImGui context be created for the editor?       |
-| **bShowDemoWindow**      | Should ImGui render a demo window when the editor opens? |
 
 ### Rendering
 
@@ -409,6 +437,11 @@ Missing texture method is macro defined in the TBImGuiConfig.h file.
 #if IMGUI_MISSING_TEXTURE_MODE == IMGUI_MISSING_TEXTURE_CUSTOM_COLOR
 #define CustomMissingTextureColor FColor::Black
 #endif
+```
+
+```cpp
+// EXAMPLE MISSING TEXTURE
+ImGui::Image(ImTextureRef(nullptr), ImVec2(100, 100));
 ```
 
 <img width="1377" height="380" alt="MissingTextures" src="https://github.com/user-attachments/assets/1a04ad6b-8a87-4768-aaed-82238fa04b10" />

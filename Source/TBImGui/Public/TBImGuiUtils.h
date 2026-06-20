@@ -3,10 +3,14 @@
 #pragma once
 
 #include <type_traits>
+#include <HAL/Platform.h>
+#include <Math/Color.h>
+#include <Templates/SharedPointer.h>
 
 class UWorld;
 class UTexture2D;
 class UGameInstance;
+class UStaticMesh;
 
 #if WITH_NETIMGUI
 class UTextureRenderTarget2D;

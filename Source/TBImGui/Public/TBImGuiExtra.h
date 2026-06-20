@@ -9,12 +9,18 @@ THIRD_PARTY_INCLUDES_END
 #endif
 
 struct FInputChord;
+struct FKey;
 
 struct ImGuiWindow;
 struct ImGuiViewport;
 struct ImGuiViewportP;
 
 typedef int ImGuiKeyChord;
+
+namespace EMouseCursor
+{
+	enum Type : int;
+}
 
 #define IMGUI_ID_SCOPE(ID)	\
 	ImGui::PushID(ID);		\
