@@ -1,6 +1,6 @@
 <div align="center">
 
-# TBImGui
+# ImGui Toolbox
 
 ![UE Version](https://img.shields.io/badge/UE-5.7-blue)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/Lewisscrivens/TBImGui)
