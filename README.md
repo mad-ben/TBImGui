@@ -318,7 +318,7 @@ Font awesome 7 free is also included in the plugin by default using juliettef's 
 
 Similar to the ImGui::ShowDemoWindow, ImPlot::ShowDemoWindow etc. I have created FTBImGuiDemo::ShowWindow showcasing these core concepts of the TBImGui plugin.
 
-<img width="1365" height="750" alt="DemoWindow" src="https://github.com/user-attachments/assets/4268f697-ee46-4c0b-90bf-a6f1edcd482a" />
+<img width="700" height="384" alt="DemoWindow" src="https://github.com/user-attachments/assets/4268f697-ee46-4c0b-90bf-a6f1edcd482a" />
 
 <p>&nbsp;</p>
 
