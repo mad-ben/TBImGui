@@ -470,9 +470,9 @@ This differs from the usual method of using the ImGui mainframe as a sort of mai
 In the `TBImGui.Build.cs` file you can set the following build settings to compile out additional third-party content:
 
 ```csharp
-	protected virtual bool WithImPlot => true;
-	protected virtual bool WithImPlot3D => true;
-	protected virtual bool WithNetImGui => true;
+protected virtual bool WithImPlot => true;
+protected virtual bool WithImPlot3D => true;
+protected virtual bool WithNetImGui => true;
 ```
 
 <p>&nbsp;</p>
