@@ -4,7 +4,7 @@
 	"VersionName": "1.0",
 	"FriendlyName": "ImGui Toolbox",
 	"Description": "ImGui Unreal Engine backend/binding for rendering ImGui content within Slate.",
-	"Category": "Toolbox Plugins",
+	"Category": "Toolbox",
 	"CreatedBy": "Lewis Scrivens",
 	"CreatedByURL": "https://lewisscrivens.com",
 	"DocsURL": "https://github.com/Lewisscrivens/TBImGui",
