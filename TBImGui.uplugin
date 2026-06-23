@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.0",
+	"VersionName": "1.0.0",
 	"FriendlyName": "ImGui Toolbox",
 	"Description": "ImGui Unreal Engine backend/binding for rendering ImGui content within Slate.",
 	"Category": "Toolbox",
