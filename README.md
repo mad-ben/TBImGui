@@ -211,7 +211,8 @@ These settings can be found in under _Project Settings > Toolbox > ImGui Toolbox
 | **AdditionalFontPaths**  | Additional font paths to scan.                                                                                                                                                  |
 | **NetImGuiPort**         | The port used when listening for incoming NetImGui connections on a client.                                                                                                     |
 
-By default the plugin will create a context for any/all game instances, show an ImGui demo window and render post world tick.
+> [!IMPORTANT]
+> By default the plugin will create a context for any/all game instances, show an ImGui demo window and render post world tick.
 
 ### Editor Settings
 
@@ -222,7 +223,8 @@ These settings can be found in under _Project Settings > Toolbox > ImGui Toolbox
 | **bCreateEditorContext** | Should an ImGui context be created for the editor?       |
 | **bShowDemoWindow**      | Should ImGui render a demo window when the editor opens? |
 
-By default the editor context is disabled since only more advanced users will make use of it.
+> [!IMPORTANT]
+> By default the editor context is disabled since only more advanced users will make use of it.
 
 <p>&nbsp;</p>
 
@@ -231,7 +233,7 @@ By default the editor context is disabled since only more advanced users will ma
 ### Context Scope
 
 `FTBImGuiContextScope` can be used to gain access to the current active ImGui context for the current scope.<br>
-If using the default constructor it will find the most appropriate context for the current runtime scope.
+If using the default constructor it will find the most appropriate context for the current **runtime** scope.
 
 ```cpp
 FTBImGuiContextScope ContextScope;
@@ -240,6 +242,9 @@ if (ContextScope.IsValid())
     ImGui::DoSomething(); // ImGui code here.
 }
 ```
+
+> [!NOTE]
+> Using the context scope outside of runtime will require direct access to the context you are trying to scope to.
 
 ### Viewport Mode
 
@@ -368,7 +373,8 @@ NetImgui is supported for remote debugging of runtime contexts.
 You can use commands to start listening for incoming connections from the NetImgui Server application.
 Learn more about it [here](https://github.com/sammyfreg/netImgui).
 
-This is extremely useful for debugging platform specific issues and even headless dedicated servers with visual UI.
+> [!TIP]
+> This is extremely useful for debugging platform specific issues and even headless dedicated servers with visual UI.
 
 ### Dedicated Server Support
 
@@ -422,7 +428,7 @@ ImGui draw commands are converted into Slate counterparts and drawn via batching
 During `OnPaint`, the draw lists read from the previously cached data and convert the ImGui vertices/indices into Slate
 counterparts which are then drawn via `FSlateDrawElement::MakeCustomVerts`.
 
-This is more expensive but a much simpler implementation.
+This is more expensive than the native method but a much simpler implementation.
 
 ### Missing Textures
 
@@ -470,9 +476,9 @@ This differs from the usual method of using the ImGui mainframe as a sort of mai
 In the `TBImGui.Build.cs` file you can set the following build settings to compile out additional third-party content:
 
 ```csharp
-protected virtual bool WithImPlot => true;
-protected virtual bool WithImPlot3D => true;
-protected virtual bool WithNetImGui => true;
+	protected virtual bool WithImPlot => true;
+	protected virtual bool WithImPlot3D => true;
+	protected virtual bool WithNetImGui => true;
 ```
 
 <p>&nbsp;</p>
