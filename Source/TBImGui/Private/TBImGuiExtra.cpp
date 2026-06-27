@@ -3,6 +3,7 @@
 #include "TBImGuiExtra.h"
 
 #include <InputCoreTypes.h>
+#include <Framework/Commands/InputChord.h>
 #include <HAL/PlatformApplicationMisc.h>
 #include <GenericPlatform/ICursor.h>
 

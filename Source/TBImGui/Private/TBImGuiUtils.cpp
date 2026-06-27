@@ -2,16 +2,20 @@
 
 #include "TBImGuiUtils.h"
 
-#include <Interfaces/IPluginManager.h>
-#include <Engine/GameViewportClient.h>
-#include <Engine/TextureRenderTarget2D.h>
+#include <Engine/Engine.h>
+#include <Engine/World.h>
 #include <Engine/Texture2D.h>
 #include <Engine/StaticMesh.h>
-#include <Engine/World.h>
+#include <Engine/GameViewportClient.h>
+#include <Engine/TextureRenderTarget2D.h>
 #include <Widgets/SWidget.h>
 #include <Widgets/SWindow.h>
 #include <CanvasItem.h>
 #include <CanvasTypes.h>
+#include <StaticMeshResources.h>
+#include <TextureResource.h>
+#include <HAL/PlatformFileManager.h>
+#include <Interfaces/IPluginManager.h>
 
 THIRD_PARTY_INCLUDES_START
 #include <imgui.h>
@@ -396,14 +400,14 @@ bool FTBImGuiUtils::SendTextureToNetImGui(UTexture2D* InTexture)
 		}
 	}
 
-	// Slower path: Blit source into a transient render target.
-	// We could read surface data but the RHI could be block compressed which causes a crash.
-	// This could be improved to check for block compression and do the cheaper read from surface.
+	// Slower path: Blit the source into a transient render target.
+	// We could read surface data, but the RHI could be block compressed which causes a crash.
+	// This could be improved to check for block compression and do the cheaper read from the surface.
 	
 	UE_LOG(LogTBImGui, Verbose, TEXT("Falling back to GPU for reading [%s] texture data to send to NetImGui."), *InTexture->GetName());
 	
 	InTexture->SetForceMipLevelsToBeResident(1.0f, 0);
-	InTexture->WaitForStreaming(true, false);
+	InTexture->WaitForStreaming();
 	
 	FTextureResource* const TextureResource = InTexture->GetResource();
 	if (!TextureResource)
@@ -412,7 +416,7 @@ bool FTBImGuiUtils::SendTextureToNetImGui(UTexture2D* InTexture)
 		return false;
 	}
 	
-	UTextureRenderTarget2D* const RenderTarget = NewObject<UTextureRenderTarget2D>(GetTransientPackage(), NAME_None, RF_Transient);
+	UTextureRenderTarget2D* const RenderTarget = NewObject<UTextureRenderTarget2D>(GetTransientPackageAsObject(), NAME_None, RF_Transient);
 	check(IsValid(RenderTarget));
 	
 	RenderTarget->ClearColor = FLinearColor::Transparent;

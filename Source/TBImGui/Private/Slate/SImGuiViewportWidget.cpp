@@ -2,7 +2,11 @@
 
 #include "Slate/SImGuiViewportWidget.h"
 
+#include <Engine/Engine.h>
+#include <Engine/GameViewportClient.h>
+#include <Framework/Commands/InputBindingManager.h>
 #include <GameFramework/InputSettings.h>
+#include <GameFramework/PlayerController.h>
 
 #include "TBImGuiTypes.h"
 

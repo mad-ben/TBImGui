@@ -3,8 +3,8 @@
 #include "TBImGuiDemo.h"
 
 #include <Engine/Texture2D.h>
+#include <Engine/StaticMesh.h>
 #include <Math/UnrealMathUtility.h>
-#include <UObject/StrongObjectPtr.h>
 
 THIRD_PARTY_INCLUDES_START
 #include <imgui.h>

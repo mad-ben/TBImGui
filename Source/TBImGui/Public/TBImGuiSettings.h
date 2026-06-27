@@ -4,6 +4,7 @@
 
 #include <Engine/DeveloperSettings.h>
 #include <Engine/EngineBaseTypes.h>
+#include <UObject/SoftObjectPtr.h>
 
 #include "TBImGuiSettings.generated.h"
 

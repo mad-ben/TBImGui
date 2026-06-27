@@ -2,6 +2,9 @@
 
 #include "TBImGuiSubsystem.h"
 
+#include <Engine/World.h>
+#include <Engine/GameViewportClient.h>
+
 THIRD_PARTY_INCLUDES_START
 #include <imgui.h>
 #include <imgui_internal.h>

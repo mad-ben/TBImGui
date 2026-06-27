@@ -3,8 +3,6 @@
 #pragma once
 
 #include <Misc/AssertionMacros.h>
-#include <Math/IntPoint.h>
-#include <Math/IntVector.h>
 #include <Math/Vector2D.h>
 #include <Math/Vector4.h>
 #include <Math/Color.h>

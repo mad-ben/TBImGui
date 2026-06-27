@@ -2,6 +2,12 @@
 
 #include "TBImGuiSettings.h"
 
+#include <UObject/UnrealType.h>
+#include <GenericPlatform/GenericPlatformFile.h>
+#include <HAL/PlatformFileManager.h>
+#include <Misc/PackageName.h>
+#include <Misc/Paths.h>
+
 #include "TBImGuiUtils.h"
 #include "TBImGuiFrameBindings.h"
 

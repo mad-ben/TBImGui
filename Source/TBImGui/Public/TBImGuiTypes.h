@@ -3,6 +3,9 @@
 #pragma once
 
 #include <Math/Vector2D.h>
+#include <UObject/ObjectMacros.h>
+
+#include "TBImGuiTypes.generated.h"
 
 class UGameInstance;
 class SWindow;
@@ -28,6 +31,14 @@ enum class ETBImGuiInputMode : uint8
 	MainViewportOnly,	// Input is enabled for the main viewport only.
 	ViewportsOnly,		// Input is enabled for all viewports except the main viewport.
 	None				// Input is disabled for all viewports.
+};
+
+UENUM()
+enum class ETBImGuiViewportMode : uint8
+{
+	Single,		// Only the main viewport will be considered.
+	Multiple,	// Windows can be dragged out of the main viewport.
+	PerWindow	// All windows are assigned their own viewport.
 };
 
 /// @brief Viewport data binding for tracking Unreal Engine windows/widgets 

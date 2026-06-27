@@ -3,9 +3,7 @@
 #pragma once
 
 #ifndef IMGUI_USER_H_FILENAME // Fix for IDE not supporting pre-definition in ImGuiConfig.
-THIRD_PARTY_INCLUDES_START
 #include <imgui.h>
-THIRD_PARTY_INCLUDES_END
 #endif
 
 struct FInputChord;

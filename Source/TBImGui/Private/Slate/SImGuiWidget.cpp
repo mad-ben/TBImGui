@@ -4,6 +4,7 @@
 
 #include <Engine/Texture.h>
 #include <Framework/Application/SlateApplication.h>
+#include <RenderingThread.h>
 
 #include "TBImGuiTypes.h"
 #include "TBImGuiContext.h"

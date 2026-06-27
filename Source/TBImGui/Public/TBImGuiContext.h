@@ -26,14 +26,6 @@ struct ImPlotContext;
 struct ImPlot3DContext;
 #endif
 
-UENUM()
-enum class ETBImGuiViewportMode : uint8
-{
-	Single,		// Only the main viewport will be considered.
-	Multiple,	// Windows can be dragged out of the main viewport.
-	PerWindow	// All windows are assigned their own viewport.
-};
-
 struct FTBImGuiContextParams
 {
 	static FTBImGuiContextParams DefaultParams;

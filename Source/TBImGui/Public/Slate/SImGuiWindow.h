@@ -27,6 +27,6 @@ public:
 	virtual bool OnIsActiveChanged(const FWindowActivateEvent& ActivateEvent) override;
 	/// End SWindow Override
 	
-	/// @brief Set the windows topmost state.
+	/// @brief Set the windows' topmost state.
 	void SetTopMost(bool bIsTopMost);
 };

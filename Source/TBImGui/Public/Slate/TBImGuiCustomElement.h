@@ -3,6 +3,7 @@
 #pragma once
 
 #include <Rendering/RenderingCommon.h>
+#include <ShaderParameterMacros.h>
 
 THIRD_PARTY_INCLUDES_START
 #include <imgui.h>

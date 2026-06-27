@@ -5,6 +5,10 @@
 #include <Containers/Array.h>
 #include <Engine/Texture.h>
 #include <RenderGraphBuilder.h>
+#include <PipelineStateCache.h>
+#include <RHIStaticStates.h>
+#include <TextureResource.h>
+#include <GlobalRenderResources.h>
 
 #include <TBImGuiShaders.h>
 
