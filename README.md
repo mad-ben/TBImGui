@@ -84,7 +84,7 @@ See the TBImGuiExamples project that uses this plugin working on a Linux build o
 
 ImGui gamepad controls as it stands are here:
 
-![image](https://user-images.githubusercontent.com/8225057/36843388-1491dfd8-1d4f-11e8-99ff-21466e680117.png)
+![image](https://github.com/user-attachments/assets/eef764f6-69d3-4c9f-91a5-a2ea7e2eb771)
 
 <p>&nbsp;</p>
 
