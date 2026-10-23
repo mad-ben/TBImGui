@@ -1,4 +1,4 @@
-﻿// Copyright Lewis Scrivens. All Rights Reserved.
+// Copyright Lewis Scrivens. All Rights Reserved.
 
 #include "TBImGuiContext.h"
 
@@ -944,8 +944,9 @@ void FTBImGuiContext::UnrealPlatform_DestroyTexture(ImTextureData* InTextureData
 	
 	InTextureData->SetTexID(ImTextureID_Invalid);
 	InTextureData->SetStatus(ImTextureStatus_Destroyed);
-	
+#if !NO_LOGGING
 	UE_LOG(LogTBImGui, VeryVerbose, TEXT("Destroyed ImGui texture: %s"), *TextureName);
+#endif
 }
 
 void FTBImGuiContext::UpdatePlatformInputState()

@@ -20,9 +20,23 @@ public class TBImGuiEditor : ModuleRules
         PrivateDependencyModuleNames.AddRange(new string[]
         {
             "Engine",
+            "ImageCore",
+            "Projects",
             "CoreUObject",
+            "InputCore",
+            "ApplicationCore",
+            "ContentBrowser",
+            "ContentBrowserData",
+            "AssetRegistry",
+            "RHI",
+            "RenderCore",
+            "UMG",
             "UnrealEd",
-            "MainFrame"
+            "MainFrame",
+            "OutputLog",
+            "SceneOutliner",
+            "PropertyEditor",
+            "WorkspaceMenuStructure"
         });
     }
 }

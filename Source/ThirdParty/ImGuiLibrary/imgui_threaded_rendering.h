@@ -92,7 +92,9 @@ inline void ImDrawDataSnapshot::SnapUsingSwap(ImDrawData* src, double current_ti
         if (entry->OurCopy == NULL)
         {
             entry->SrcCopy = src_list;
-            entry->OurCopy = IM_NEW(ImDrawList)(src_list->_Data);
+            // AK CHANGES - ImGui context teardown: the copy only receives swapped buffers, so it stays out of the context's shared data.
+            // Registered, a snapshot still held by the window outlives the context (imgui_draw.cpp DrawLists.Size == 0 ensure).
+            entry->OurCopy = IM_NEW(ImDrawList)(NULL);
         }
         IM_ASSERT(entry->SrcCopy == src_list);
         entry->SrcCopy->CmdBuffer.swap(entry->OurCopy->CmdBuffer); // Cheap swap

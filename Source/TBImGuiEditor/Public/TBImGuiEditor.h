@@ -23,6 +23,12 @@ public:
 	
 	/// @brief Returns true if the editors context has been created, false otherwise.
 	static bool HasEditorContext();
+
+	/// @brief Apply the theme selected in the editor settings to the active ImGui context.
+	static void ApplyConfiguredTheme();
+
+	/// @brief Apply the configured theme to whichever ImGui context is currently active.
+	static void ApplyThemeToCurrentContext();
 	
 	/// Ran when the editor context is created.
 	static TMulticastDelegate<void(TSharedPtr<FTBImGuiContext>)> OnContextCreated;

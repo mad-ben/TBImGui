@@ -222,6 +222,109 @@ These settings can be found in under _Project Settings > Toolbox > ImGui Toolbox
 |--------------------------|----------------------------------------------------------|
 | **bCreateEditorContext** | Should an ImGui context be created for the editor?       |
 | **bShowDemoWindow**      | Should ImGui render a demo window when the editor opens? |
+| **EditorTheme**          | Select the live visual theme for editor ImGui surfaces.  |
+| **Editor Font Size** | Saved font size for ImGui editor panels, from 8 to 32 px; updates open panels. |
+| **Content Browser Thumbnail Size** | Saved shared thumbnail size for ImGui browsers and the drawer, from 32 to 256 px. |
+| **Enable ImGui UI** | One switch for all editor UI ports: Output Log, Modules, World Outliner tree, Content Browser asset area, and Level Editor Details tree (requires an editor restart). |
+
+**Enable ImGui UI** controls all editor UI ports and is enabled by default. It retains
+the existing `bPreferImGuiOutputLog` config key so saved preferences continue to apply.
+When disabled, no ImGui editor UI ports are registered. The optional main editor/demo
+context is configured separately by `bCreateEditorContext`.
+
+When enabled, the editor module makes ImGui the preferred **Output Log** implementation under
+_Window > Log_ and in the editor status-bar drawer. Unreal's original implementation remains
+available as **Output Log (Slate Fallback)**.
+
+The same **Enable ImGui UI** switch under _Project Settings > Toolbox > ImGui Toolbox Editor_
+also shows _Tools > Debug > ImGui Modules_ in UE5.8. It lists
+engine, editor, and plugin code modules with name search, a loaded-only filter,
+loaded status, and library paths. Load, Unload, and Reload use Unreal's deferred
+module commands; Unload and Reload are enabled only for loaded modules without
+UObject classes that support dynamic reloading. TBImGui's own modules are protected
+from unloading in this window. Module changes refresh the list automatically, and
+**Refresh** requests a fresh snapshot. This window works even when the main editor
+ImGui context is disabled. Recompile remains available in Unreal's original Modules tool.
+
+The same switch replaces the hierarchy tree inside the existing **World Outliner**
+tabs (Outliner 1–4). Unreal continues to own the hierarchy, search/filter bar, status
+bar, editor selection, context menus, label validation, and edit transactions.
+The ImGui tree follows Unreal's visible columns, sorting, and column visibility
+settings. World and folder rows use full-width ImGui category headers; their
+visibility and pin controls remain available. Category rows omit secondary column
+text. Arrow clicks expand/collapse, while label clicks retain selection.
+It supports Ctrl/Shift selection, keyboard navigation, recursive expansion,
+visibility dragging with undo, World Partition pin controls, double-click focus,
+and native drag-and-drop between the tree and editor widgets. Source-control and
+custom column controls are accessible through native popovers. Rename uses an
+inline ImGui text field with Unreal's validation and commit callbacks. Actor/component
+pickers and outliners belonging to other tools retain their native UI.
+Disable **Enable ImGui UI** and restart to restore the standard Outliner tree.
+
+The **Content Browser** and **Content Drawer** use an ImGui asset area when the same
+switch is enabled. The grid and list share Unreal's filtered/sorted item collection,
+including folders, search results, collections, and plugin content. Grid size is
+adjustable in the ImGui toolbar. Standard folder navigation, search/filter controls,
+and the browser status bar remain native. Normal asset pickers keep their native views.
+
+Asset previews use Unreal's native thumbnail widgets, including their asset-type
+icons when a rendered preview is unavailable. Folders use Unreal's folder brushes
+and configured path colors. These native widgets are rendered into textures that
+ImGui can display, with at most 128 cached images and four updates per frame. Grid
+names wrap to fit the card, with enough row height to keep the asset type below the
+full name. An additional caption shows a material instance's parent name or a
+texture's source dimensions, when available in Asset Registry tags. Captions do
+not load assets and are clipped to their card. The **Thumbnail Size** slider
+controls the grid image size.
+
+Assets without a rendered preview use UE3-style shared placeholders: the original
+`Resources/SharedThumbBackground.png` is hue-shifted using the UE5 asset-type color,
+with a centered, wrapped type label and a small embossed text highlight. Background
+textures are cached per color. Real previews replace placeholders when ready;
+folders retain their native icons. This also applies to inline Details thumbnails.
+The background is copied unchanged from the supplied UE3 source's
+`UnrealEdCSharp/Images/SharedThumbBackground.png`; the reference generation code is
+`UnrealEdCSharp/ContentBrowser/ThumbnailCache.cs`. UE5's current type colors are used,
+so the palette follows UE5 asset definitions rather than a hardcoded UDK palette.
+
+File thumbnails in the grid have a square dark frame, a subtle lower-right shadow,
+and a one-pixel asset-type accent along the top and left edges. The color comes
+from Unreal's asset type (or the item's color override), rather than the preview
+image. The native bottom color strip is hidden; folder brushes keep their own shadows.
+
+With **Enable ImGui UI** active, material thumbnails use a front-facing square
+plane, overriding saved preview shapes for display. The native material renderer
+remains in use; the material graph and saved thumbnail settings are not rewritten.
+Visible materials are loaded asynchronously, with at most two loads in flight and
+one new request per frame. Their handles remain alive while cached. A shared type placeholder is displayed until a fresh preview is available,
+rather than showing the saved sphere image. Loaded material thumbnails bypass the disk/image cache.
+The square framing fills the thumbnail with a small border. This policy also affects native
+thumbnail consumers while the integration is enabled. It is controlled internally
+by `Editor.MaterialThumbnail.FlatDefault` and restored when the integration unloads.
+
+The UE3 reference uses `TPT_Plane` with `TexPropPlane` in
+`UnrealEd/Inc/ThumbnailHelpers.h` and passes the selected primitive from
+`UMaterialInstanceThumbnailRenderer::Draw` in `UnrealEd/Src/ThumbnailManager.cpp`.
+Its generic browser also saves the chosen default primitive in editor user settings.
+UE5 still supports `TPT_Plane`; this port selects that existing path and fixes the
+default camera to face the plane, rather than introducing a separate material renderer.
+
+Material thumbnail preview meshes disable World Position Offset in raster and
+ray-tracing rendering. This does not change the material or viewport components;
+other time-dependent material effects, such as animated UVs, can still animate.
+
+The asset area supports Ctrl/Shift selection, keyboard navigation, type-to-select,
+double-click opening through native asset handlers, native context menus, inline
+ImGui rename and new-item naming, and Unreal's drag handlers. Folder hover navigation
+and edge scrolling support long drags. Lists offer native/custom metadata columns,
+primary/secondary sorting, and CSV copying. Grid/list choice and
+visible list columns are saved per browser instance. Thumbnail size is shared through
+Project Settings; the toolbar slider and Ctrl+wheel update that saved setting too.
+Native tooltip extensions and
+thumbnail editing are accessible from the asset area. Native view modes remain
+available from the browser's view menu; enabling ImGui does not overwrite the saved
+native view preference. Asset status overlays and stacked hierarchy headers are
+still presentation gaps; see [the coverage and verification checklist](Docs/EditorUIParity.md).
 
 > [!IMPORTANT]
 > By default the editor context is disabled since only more advanced users will make use of it.

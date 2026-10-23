@@ -1,11 +1,17 @@
-﻿// Copyright Lewis Scrivens. All Rights Reserved.
+// Copyright Lewis Scrivens. All Rights Reserved.
 
 #include "TBImGuiEditor.h"
 
 #include <Slate/SImGuiWidget.h>
 
 #include "TBImGuiEditorSettings.h"
+#include "TBImGuiEditorTheme.h"
 #include "TBImGuiFrameBindings.h"
+#include "TBImGuiContentBrowserIntegration.h"
+#include "TBImGuiModulesIntegration.h"
+#include "TBImGuiOutlinerIntegration.h"
+#include "TBImGuiOutputLogIntegration.h"
+#include "TBImGuiDetailsIntegration.h"
 
 IMPLEMENT_MODULE(FTBImGuiEditorModule, TBImGuiEditor)
 
@@ -17,28 +23,33 @@ TSharedPtr<FTBImGuiContext> FTBImGuiEditorModule::EditorContext = nullptr;
 
 FTBImGuiEditorModule& FTBImGuiEditorModule::Get()
 {
-    return FModuleManager::LoadModuleChecked<FTBImGuiEditorModule>("TBImGuiEditor");
+	return FModuleManager::LoadModuleChecked<FTBImGuiEditorModule>("TBImGuiEditor");
 }
 
 void FTBImGuiEditorModule::StartupModule()
 {
+	TBIMGUI_CONTENT_BROWSER_INTEGRATION::Register();
+	TBIMGUI_OUTLINER_INTEGRATION::Register();
+	TBIMGUI_DETAILS_INTEGRATION::Register();
+	TBImGuiModulesIntegration::Register();
+	TBImGuiOutputLogIntegration::Register();
+
 	const UTBImGuiEditorSettings* const ImGuiEditorSettings = UTBImGuiEditorSettings::Get();
 	if (!IsValid(ImGuiEditorSettings) || !ImGuiEditorSettings->bCreateEditorContext)
 	{
 		UE_LOG(LogTBImGuiEditor, Log, TEXT("ImGui editor context is disabled via settings, Skipping mainframe context creation..."));
 		return;
 	}
-	
+
 	FTBImGuiContextParams ContextParams;
 	ContextParams.ContextName = ImGuiEditorContextName;
 	ContextParams.ViewportMode = ETBImGuiViewportMode::PerWindow;
 	EditorContext = FTBImGuiContext::CreateContext(ContextParams);
 	check(EditorContext.IsValid());
-	
-	// Bind to the application scope for rendering ImGui in the editor.
+	ApplyConfiguredTheme();
+
 	EditorContext->InitializeFrameBinding(FTBImGuiFrameBinding_Slate::StaticStruct());
-	
-	// Optionally, show the demo window by default.
+
 	if (ImGuiEditorSettings->bShowDemoWindow)
 	{
 		EditorContext->OnPreRender().AddLambda([]
@@ -46,18 +57,24 @@ void FTBImGuiEditorModule::StartupModule()
 			ImGui::ShowDemoWindow();
 		});
 	}
-	
+
 	OnContextCreated.Broadcast(EditorContext.ToSharedRef());
 }
 
 void FTBImGuiEditorModule::ShutdownModule()
 {
+	TBIMGUI_CONTENT_BROWSER_INTEGRATION::Unregister();
+	TBIMGUI_OUTLINER_INTEGRATION::Unregister();
+	TBIMGUI_DETAILS_INTEGRATION::Unregister();
+	TBImGuiModulesIntegration::Unregister();
+	TBImGuiOutputLogIntegration::Unregister();
+
 	if (EditorContext.IsValid())
 	{
 		EditorContext->DestroyContext();
 		EditorContext.Reset();
 	}
-	
+
 	OnContextCreated.Clear();
 }
 
@@ -69,4 +86,15 @@ TSharedPtr<FTBImGuiContext> FTBImGuiEditorModule::GetEditorContext()
 bool FTBImGuiEditorModule::HasEditorContext()
 {
 	return EditorContext.IsValid();
+}
+
+void FTBImGuiEditorModule::ApplyConfiguredTheme()
+{
+	TBImGuiEditorTheme::ApplyConfiguredToContext(EditorContext);
+	TBImGuiEditorTheme::ApplyConfiguredToAllContexts();
+}
+
+void FTBImGuiEditorModule::ApplyThemeToCurrentContext()
+{
+	TBImGuiEditorTheme::ApplyConfiguredToCurrentContext();
 }

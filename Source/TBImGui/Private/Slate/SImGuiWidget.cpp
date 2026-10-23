@@ -421,7 +421,11 @@ void SImGuiWidget::FTBImGuiDrawData::Update(const ImDrawData* InDrawData)
 	{
 		if (CmdList)
 		{
-			DrawLists.Add(CmdList->CloneOutput());
+			// AK CHANGES - ImGui context teardown: the clone is only read here, so it leaves the context's shared data. Registered, a
+			// clone still cached when the window closes outlives the context (imgui_draw.cpp DrawLists.Size == 0 ensure).
+			ImDrawList* const DrawList = CmdList->CloneOutput();
+			DrawList->_SetDrawListSharedData(nullptr);
+			DrawLists.Add(DrawList);
 		}
 	}
 }
@@ -472,40 +476,50 @@ FReply SImGuiWidget::HandleKeyEvent(const FKeyEvent& InEvent, bool bKeyDown)
 FReply SImGuiWidget::HandleMouseButtonEvent(const FPointerEvent& InEvent, const ETBMouseButtonEvent InMouseButtonEvent)
 {
 	FTBImGuiContextScope ContextScope(OwningContext);
-	
-	ImGuiIO& IO = ImGui::GetIO();
-	if (!IO.WantCaptureMouse)
+	if (!ContextScope.IsValid())
 	{
 		return FReply::Unhandled();
 	}
-	
-	const ImGuiMouseButton_ MouseButton = ImGui::ToImGuiMouseButton(InEvent.GetEffectingButton());
-	if (MouseButton < 3)
+	ImGuiIO& IO = ImGui::GetIO();
+	IO.AddKeyEvent(ImGuiMod_Ctrl, InEvent.IsControlDown());
+	IO.AddKeyEvent(ImGuiMod_Shift, InEvent.IsShiftDown());
+	IO.AddKeyEvent(ImGuiMod_Alt, InEvent.IsAltDown());
+	IO.AddKeyEvent(ImGuiMod_Super, InEvent.IsCommandDown());
+	const bool bReleased = InMouseButtonEvent == ETBMouseButtonEvent::Released;
+	if (!IO.WantCaptureMouse && !bReleased)
 	{
-		IO.AddMouseButtonEvent(MouseButton, InMouseButtonEvent != ETBMouseButtonEvent::Released);
+		return FReply::Unhandled();
 	}
-	
+
+	const ImGuiMouseButton_ MouseButton = ImGui::ToImGuiMouseButton(InEvent.GetEffectingButton());
+	if (MouseButton < 0 || MouseButton >= 3)
+	{
+		return FReply::Unhandled();
+	}
+	IO.AddMouseButtonEvent(MouseButton, !bReleased);
+
 	switch (InMouseButtonEvent)
 	{
-		case ETBMouseButtonEvent::Pressed:
-		{
-			return FReply::Handled().CaptureMouse(AsShared()).PreventThrottling();
-		}
-		case ETBMouseButtonEvent::Released:
-		{
-			if (HasMouseCapture())
-			{
-				return FReply::Handled().ReleaseMouseCapture();
-			}
-			break;
-		}
-		case ETBMouseButtonEvent::DoubleClick:
-		{
-			return FReply::Handled();
-		}
-		default: break;
+	case ETBMouseButtonEvent::Pressed:
+	{
+		return FReply::Handled().CaptureMouse(AsShared()).PreventThrottling();
 	}
-	
+	case ETBMouseButtonEvent::Released:
+	{
+		if (HasMouseCapture())
+		{
+			return FReply::Handled().ReleaseMouseCapture();
+		}
+		break;
+	}
+	case ETBMouseButtonEvent::DoubleClick:
+	{
+		return FReply::Handled();
+	}
+	default:
+		break;
+	}
+
 	return FReply::Unhandled();
 }
 
